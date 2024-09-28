@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ blog_post.title }}{% endblock %}
+{% block content %}
+    <h1>{{ blog_post.title }}</h1>
+    <p>By {{ blog_post.author }} | Published on {{ blog_post.created_at }}</p>
+    <img src="{{ blog_post.image.url }}" alt="{{ blog_post.title }}" class="img-fluid" />
+    <p>{{ blog_post.content }}</p>
+    {% if user.is_authenticated %}
+    <a href="{% url 'update_blog_post' blog_post.pk %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'delete_blog_post' blog_post.pk %}" class="btn btn-danger">Delete</a>
+    {% endif %}
+{% endblock %}
